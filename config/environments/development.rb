@@ -9,6 +9,9 @@ Rails.application.configure do
   # Do not eager load code on boot.
   config.eager_load = false
 
+  # For better_errors gem
+  config.consider_all_requests_local = true
+
   # Show full error reports.
   config.consider_all_requests_local = true
 
