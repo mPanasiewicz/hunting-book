@@ -26,10 +26,13 @@ gem 'jbuilder', '~> 2.0'
 # gem 'redis', '~> 3.0'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
-
+# bootstrap sass-rails
+gem 'bootstrap-sass', '~> 3.3', '>= 3.3.6'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
-gem 'bootstrap', '~> 4.0.0.alpha3'
+gem 'high_voltage', '~> 3.0.0'
+# Fake data to Database
+gem 'ffaker', '~> 2.0'
 
 source 'https://rails-assets.org' do
   gem 'rails-assets-tether', '>= 1.1.0'
@@ -43,11 +46,15 @@ end
 group :development do
   # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.
   gem 'web-console'
+
   gem 'listen', '~> 3.0.5'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'rubocop', require: false
+  gem 'better_errors'
+  gem 'binding_of_caller'
+  gem 'pry-rails', '~> 0.3.4'
 end
 
 group :production do
