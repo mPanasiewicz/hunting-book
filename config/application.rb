@@ -6,10 +6,21 @@ require 'rails/all'
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
-module HuntBook
+module Rogacz
   class Application < Rails::Application
-    # Settings in config/environments/* take precedence over those specified here.
-    # Application configuration should go into files in config/initializers
-    # -- all .rb files in that directory are automatically loaded.
+    Rails.application.configure do
+      config.assets.enabled = true
+      config.assets.paths << "#{Rails.root}/app/assets/fonts"
+
+      config.generators do |g|
+        g.test_framework :rspec, fixture: false
+        g.integration_tool :rspec
+        g.fixture_replacement :factory_girl, dir: 'spec/factories'
+      end
+
+      config.autoload_paths += Dir["#{config.root}/app/**/"]
+      config.autoload_paths += Dir["#{config.root}/lib/**/"]
+      config.eager_load_paths += %W(#{config.root}/lib)
+    end
   end
 end

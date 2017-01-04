@@ -1,47 +1,36 @@
-# Puma can serve each request in a thread from an internal thread pool.
-# The `threads` method setting takes two numbers a minimum and maximum.
-# Any libraries that use thread pools should be configured to match
-# the maximum value specified for Puma. Default is set to 5 threads for minimum
-# and maximum, this matches the default thread size of Active Record.
-#
-threads_count = ENV.fetch("RAILS_MAX_THREADS") { 5 }.to_i
-threads threads_count, threads_count
+#!/usr/bin/env puma
+directory '/home/mfind_rails/current'
+rackup '/home/mfind_rails/current/config.ru'
+environment ENV['RACK_ENV'] || 'development'
 
-# Specifies the `port` that Puma will listen on to receive requests, default is 3000.
-#
-port        ENV.fetch("PORT") { 3000 }
+# TODO: IN puma integration on production, need to prepare linkto this config in shared/config
+# becouse it will be different for production, staging and dev
+pidfile "/home/mfind_rails/shared/tmp/pids/puma.pid"
+state_path "/home/mfind_rails/shared/tmp/pids/puma.state"
+stdout_redirect "/home/mfind_rails/shared/log/puma_access.log", "/home/mfind_rails/shared/log/puma_error.log", true
 
-# Specifies the `environment` that Puma will run in.
-#
-environment ENV.fetch("RAILS_ENV") { "development" }
+threads 6, 12
+workers 0
+preload_app!
 
-# Specifies the number of `workers` to boot in clustered mode.
-# Workers are forked webserver processes. If using threads and workers together
-# the concurrency of the application would be max `threads` * `workers`.
-# Workers do not work on JRuby or Windows (both of which do not support
-# processes).
-#
-# workers ENV.fetch("WEB_CONCURRENCY") { 2 }
+bind 'unix:///home/mfind_rails/shared/tmp/sockets/puma.sock'
 
-# Use the `preload_app!` method when specifying a `workers` number.
-# This directive tells Puma to first boot the application and load code
-# before forking the application. This takes advantage of Copy On Write
-# process behavior so workers use less memory. If you use this option
-# you need to make sure to reconnect any threads in the `on_worker_boot`
-# block.
-#
-# preload_app!
+puts "RACK ENVIROMENT: #{ENV['RACK_ENV']}"
+before_fork do
+  require 'puma_worker_killer'
 
-# The code in the `on_worker_boot` will be called if you are using
-# clustered mode by specifying a number of `workers`. After each worker
-# process is booted this block will be run, if you are using `preload_app!`
-# option you will want to use this block to reconnect to any threads
-# or connections that may have been created at application boot, Ruby
-# cannot share connections between processes.
-#
-# on_worker_boot do
-#   ActiveRecord::Base.establish_connection if defined?(ActiveRecord)
-# end
+  PumaWorkerKiller.config do |config|
+    config.ram           = 1024 # mb
+    config.frequency     = 5    # seconds
+    config.percent_usage = 0.85
+    config.rolling_restart_frequency = 6 * 3600 # 6 hours in seconds
+  end
+  PumaWorkerKiller.start
+end
 
-# Allow puma to be restarted by `rails restart` command.
-plugin :tmp_restart
+prune_bundler
+
+on_restart do
+  puts 'Refreshing Gemfile'
+  ENV['BUNDLE_GEMFILE'] = '/home/mfind_rails/current/Gemfile'
+end
