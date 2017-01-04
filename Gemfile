@@ -33,6 +33,11 @@ group :development, :test do
 end
 
 group :development do
+  gem 'capistrano', '~> 3.7', '>= 3.7.1',         require: false
+  gem 'capistrano-bundler', '~> 1.2',             require: false
+  gem 'capistrano-rails', '~> 1.2', '>= 1.2.1',   require: false
+  gem 'capistrano-rvm', '~> 0.1.2',               require: false
+  gem 'capistrano3-puma', '~> 1.2', '>= 1.2.1',   require: false
   gem 'listen', '~> 3.0.5'
   gem 'rubocop', '~> 0.46.0', require: false
   gem 'web-console'
