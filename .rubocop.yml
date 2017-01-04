@@ -1,0 +1,12 @@
+Documentation:
+  Enabled: false
+
+Metrics/LineLength:
+  Max: 120
+
+AllCops:
+  TargetRubyVersion: 2.3
+FrozenStringLiteralComment:
+  Enabled: false
+Documentation:
+  Enabled: false
