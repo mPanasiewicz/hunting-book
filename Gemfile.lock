@@ -1,3 +1,9 @@
+GIT
+  remote: git://github.com/RailsApps/rails_layout.git
+  revision: 0196301f8f287a2f05d12b4ae2c9a3ea32fc04e3
+  specs:
+    rails_layout (1.0.34)
+
 GEM
   remote: https://rubygems.org/
   remote: https://rails-assets.org/
@@ -291,6 +297,7 @@ DEPENDENCIES
   rails (~> 5.0, >= 5.0.1)
   rails-assets-tether (>= 1.1.0)!
   rails_12factor
+  rails_layout!
   rspec-rails (~> 3.5, >= 3.5.2)
   rubocop (~> 0.46.0)
   sass-rails (~> 5.0)

@@ -39,6 +39,7 @@ group :development do
   gem 'capistrano-rvm', '~> 0.1.2'
   gem 'capistrano3-puma', '~> 1.2', '>= 1.2.1'
   gem 'listen', '~> 3.0.5'
+  gem 'rails_layout', github: 'RailsApps/rails_layout'
   gem 'rubocop', '~> 0.46.0', require: false
   gem 'web-console'
 end
