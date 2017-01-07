@@ -1,0 +1,19 @@
+test:
+  adapter: postgresql
+  encoding: utf-8
+  database: hunt_book_database
+  pool: 5
+  username: root
+  password:
+  host: localhost
+  port: 5432
+
+test:
+  adapter: postgresql
+  encoding: utf-8
+  database: hunt_book_test
+  pool: 5
+  username: root
+  password:
+  host: localhost
+  port: 5432
