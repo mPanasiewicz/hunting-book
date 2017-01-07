@@ -1,0 +1,35 @@
+machine:
+  ruby:
+    version: 2.3.3
+
+## Customize dependencies
+dependencies:
+  pre:
+    - gem install rainbow -v '2.2.1'
+    - gem install bundler --pre
+
+  override:
+    - bundle install: # note ':' here
+        timeout: 180 # fail if command has no output for 3 minutes
+    - cp .rspec.sample .rspec
+    - cp .env.sample .env
+
+  # we automatically cache and restore many dependencies between
+  # builds. If you need to, you can add custom paths to cache:
+  cache_directories:
+    - "circle_cache"   # relative to the build directory
+
+## Customize database setup
+database:
+  override:
+    # replace CircleCI's generated database.yml
+    - cp config/database.sample.yml config/database.yml
+    - RAILS_ENV=test bundle exec rake db:create db:schema:load
+  post:
+    - bundle exec rake assets:precompile
+    - RAILS_ENV=test bundle exec rake db:seed
+
+test:
+  override:
+    - bundle exec rspec:
+        parallel: true

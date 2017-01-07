@@ -17,7 +17,7 @@ module Rogacz
         g.integration_tool :rspec
         g.fixture_replacement :factory_girl, dir: 'spec/factories'
       end
-
+      config.time_zone = 'Warsaw'
       config.autoload_paths += Dir["#{config.root}/app/**/"]
       config.autoload_paths += Dir["#{config.root}/lib/**/"]
       config.eager_load_paths += %W(#{config.root}/lib)
