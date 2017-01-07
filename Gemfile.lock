@@ -1,3 +1,9 @@
+GIT
+  remote: git://github.com/RailsApps/rails_layout.git
+  revision: 0196301f8f287a2f05d12b4ae2c9a3ea32fc04e3
+  specs:
+    rails_layout (1.0.34)
+
 GEM
   remote: https://rubygems.org/
   remote: https://rails-assets.org/
@@ -108,6 +114,8 @@ GEM
     get_process_mem (0.2.1)
     globalid (0.3.7)
       activesupport (>= 4.1.0)
+    haml (4.0.7)
+      tilt
     high_voltage (3.0.0)
     i18n (0.7.0)
     interception (0.5)
@@ -278,6 +286,7 @@ DEPENDENCIES
   factory_girl_rails (~> 4.8)
   ffaker (~> 2.4)
   fuubar (~> 2.2)
+  haml (~> 4.0, >= 4.0.7)
   high_voltage (~> 3.0)
   jbuilder (~> 2.0)
   jquery-rails
@@ -291,6 +300,7 @@ DEPENDENCIES
   rails (~> 5.0, >= 5.0.1)
   rails-assets-tether (>= 1.1.0)!
   rails_12factor
+  rails_layout!
   rspec-rails (~> 3.5, >= 3.5.2)
   rubocop (~> 0.46.0)
   sass-rails (~> 5.0)

@@ -16,6 +16,7 @@ gem 'turbolinks', '~> 5.x'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 gem 'bootstrap', '~> 4.0.0.alpha5'
+gem 'haml', '~> 4.0', '>= 4.0.7'
 gem 'dotenv-rails', '~> 2.1', '>= 2.1.1'
 gem 'high_voltage', '~> 3.0'
 
@@ -39,6 +40,7 @@ group :development do
   gem 'capistrano-rvm', '~> 0.1.2'
   gem 'capistrano3-puma', '~> 1.2', '>= 1.2.1'
   gem 'listen', '~> 3.0.5'
+  gem 'rails_layout', github: 'RailsApps/rails_layout'
   gem 'rubocop', '~> 0.46.0', require: false
   gem 'web-console'
 end
