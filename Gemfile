@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-ruby '2.3.3'
+ruby '2.4.0'
 
 gem 'coffee-rails', '~> 4.1.0'
 gem 'pg', '~> 0.19.0'
